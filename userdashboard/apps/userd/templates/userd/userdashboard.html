@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Board</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h2> {{user.name}}</h2>
+        <p>Regestered @ {{user.created_at}}</p>
+        <p>user id {{user.id}}</p>
+        <p>email address: {{user.email}}</p>
+        <p>Description: </p>
+        <form action='message/{{user.id}}' method='POST'>
+            {% csrf_token %}
+            <h2>leave a message for {{user.name}}</h2>
+            <textarea name='message' cols=50 rows=4>
+            </textarea>
+            <input type='submit' value='Post'>
+        </form>
+        {%for msg in message %}
+            {%if msg.users_id == user.id %}
+                <h3>Message from {{poster.name}} at {{msg.created_at}}</h3>
+                <font size="6">{{msg.text}}</font>
+                {%for com in comment%}
+                    {%if com.id == msg.id %}
+                        <p>{{com.created_at}} - {{com.text}}</p>
+                    {%endif%}
+                {%endfor%}
+                <form action='/comment/{{msg.id}}' method='POST'>
+                    {% csrf_token %}
+                    <textarea name='comment' cols=30 rows=3></textarea>
+                    <input type='submit' value='comment'>
+                </form>
+            {%endif%}
+        {%endfor%}
+    </body>
+</html>

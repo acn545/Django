@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Survey</title>
+        <meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'surveys/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+        <div id='wrapper'>
+            <form action="/submission" method="POST">
+                {% csrf_token %}
+                Your Name: <input type="text" name='name'>
+                Dojo Location: <input type="text" name="loc">
+                Favorite Language: <select name="lang">
+                    <option value="java">Java</option>
+                    <option value="javaScript">JavaScript</option>
+                    <option value="c#">C#</option>
+                    <option value="python">Python</option>
+                </select>
+                Comments: <textarea rows="4" cols="28" name="comment"></textarea>
+                <input type='submit', value='Submit', name='submit'>
+            </form>
+        </div>
+    </body>
+</html>
+
+
+
+
+

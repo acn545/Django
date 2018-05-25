@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Course</title>
+        <meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'course/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+        <div id='wrapper'>
+            {% for message in messages%}
+                <li>{{message}}</li>
+
+            {%endfor%}
+            <div id='add'>
+                <h2>Add a new Course</h2>
+                <form action='/add' method='POST'>
+                {% csrf_token %}
+                Name: <input type='text' name='name' id='name_field'>
+                Description: <textarea rows='4' cols='30' name='desc'></textarea>
+                <input type='submit' value='Add'>
+                </form>
+            </div>
+            <div id='courses'>
+                <h2>Courses</h2>
+                <table>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Date added</th>
+                        <th>Actions</th>
+                    </tr>
+                   {% for course in courses%}
+                    <tr>
+                        <td>{{course.name}}</td>
+                        <td>{{course.course.desc}}</td>
+                        <td>{{course.created_at}}</td>
+                        <td><form action='/courses/destroy/{{course.id}}' method='POST'>{% csrf_token %}<input type='submit' value='Remove'><input type='hidden' value="{{course.id}}" name='hidden'></form></td>
+                    </tr>
+                   {%endfor%}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

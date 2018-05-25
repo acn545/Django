@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test registation</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id='wrapper'>
+            <div id='register'>
+                <h2>Register Here</h2>
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %} 
+                <form action="/register" method='POST'>
+                    {% csrf_token %}
+                    Name: <input type='text' name='name'>
+                    Email: <input type='text' name='email'>
+                    Password: <input type='password' name='password'>
+                    <p> passwords should be atleast 8 chracters long</p>
+                    Confirm pw: <input type='password' name='cpassword'>
+                    <input type='submit' value='register'>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

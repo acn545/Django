@@ -1,0 +1,12 @@
+#wrapper{
+width: 970px;
+margin: 0px auto;
+}
+#info{
+    border-style: solid;
+    border-width: 3px;
+}
+#time{
+    border-style: solid;
+    border-width: 3px;
+}

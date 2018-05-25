@@ -1,0 +1,23 @@
+<DOCTYPE! html>
+    <html>
+        <head>
+            <title>add user</title>
+            <meta charset="utf-8">
+        </head>
+        <body>
+              
+            <table>
+                <h1>Add a new user</h1>
+                <form action='/users/create' method="POST">
+                {% csrf_token %}
+                Full name: <input type="text" name="name" id="first_name">
+                Email address: <input type="text" name="email" id="email">
+                <input type="submit" value="Create">
+            </form>
+            <form action='/' method="GET">  
+                {% csrf_token %}
+                <input type="submit" value="Go back">
+            </form>
+        </body>
+    </html>
+</DOCTYPE>

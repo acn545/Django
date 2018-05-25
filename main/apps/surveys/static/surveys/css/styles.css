@@ -1,0 +1,12 @@
+#wrapper{
+    width: 970px;
+    margin: 0px auto;
+}
+form{
+    display: inline-block;
+    border-style: solid;
+    border-width: 1px;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+}

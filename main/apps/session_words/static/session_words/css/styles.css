@@ -1,0 +1,15 @@
+#wrapper{
+    width: 970px;
+    margin: 0px auto;
+}
+#left{
+    width: 300px;
+    display: inline-block;
+    border-right: 5px solid black;
+}
+
+#right{
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}

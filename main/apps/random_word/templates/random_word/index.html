@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> time</title>
+        <meta charset="utf-8">
+        {% load static %}
+ 
+    </head>
+    <body>
+        <div id='wrapper'>
+            <div id='info'>
+                <p>Generated a total of {{number}} random words</p>
+            </div>
+            <div id="time">
+                {{random}}
+            </div>
+            <form action="/random_word/index" method="POST">
+                {% csrf_token %}
+                <input type='submit', value='generate', name='generate'>
+            </form>
+        </div>
+    </body>
+</html>

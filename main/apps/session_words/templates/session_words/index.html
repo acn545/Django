@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title> Session words</title>
+            <meta charset="utf-8">
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'session_words/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+<div id="wrapper">
+    <div id="left">
+        <h2> Add a new word</h2>
+        <form action="/add" method='POST'>
+            {% csrf_token %}
+            <input type="text" name='word'><br>
+            <input type='radio' name='color', value='green' checked> Green<br>
+            <input type='radio' name='color', value='red'> Red<br>
+            <input type='radio' name='color', value='blue'> Blue<br>
+            <input type="checkbox" name="checked" > show in big fonts<br>
+            <input type="submit" value='Add to Session'>
+        </form>
+    </div>
+    <div id="right">
+        <form action='/clear' method='POST'>
+            {% csrf_token %}
+            <input type="submit" value='Clear Session'>
+        </form>
+            {% load app_filters %}
+            {%for L in data%}
+                    
+                    {% if "on" in check|get_at_index:forloop.counter0 %}
+                        {% if "green" in color|get_at_index:forloop.counter0%}
+                            <h2 style="color:green;">{{L}}</h2>
+                        {% elif "red" in color|get_at_index:forloop.counter0%}
+                            <h2 style="color:red;">{{L}}</h2>
+                        {% elif "blue" in color|get_at_index:forloop.counter0%}
+                            <h2 style="color:blue;">{{L}}</h2>
+                    {% endif%}
+                    {% else%}
+                        {% if "green" in color|get_at_index:forloop.counter0%}  
+                            <p style="color:green;">{{L}}</p>
+                        {% elif "red" in color|get_at_index:forloop.counter0%}
+                            <p style="color:red;">{{L}}</p>
+                        {% elif "blue" in color|get_at_index:forloop.counter0%}
+                            <p style="color:blue;">{{L}}</p>
+                        {% endif%}
+                    {% endif%}
+            {% endfor%} 
+
+    </div>
+</div>
+    </body>
+</html>

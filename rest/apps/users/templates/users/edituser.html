@@ -1,0 +1,31 @@
+<DOCTYPE! html>
+    <html>
+        <head>
+            <title>add user</title>
+            <meta charset="utf-8">
+        </head>
+        <body>
+                {% for user in users %}
+                {% if num == user.id%}
+                <h1> Edit user {{user.id}}</h1>
+                <form action="/users/{{user.id}}/update" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value= '{{user.id}}', name='id'>
+                First name: <input type="text" name="name">
+                Email address: <input type="text" name="email" >
+                <input type="submit" value="UPDATE">
+            </form>
+            {% endif%}
+            {% endfor %}
+        <form action='/' method="GET">    
+            {% csrf_token %}
+            <input type="submit" value="Go back">
+        </form>
+        <form action="/users/{{num}}" method="GET">
+            <input type="hidden" value= '{{num}}', name='id'> 
+            {% csrf_token %} 
+            <input type="submit" value="Show">
+        </form>
+        </body>
+    </html>
+</DOCTYPE>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Login</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id='wrapper'>
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}  
+            <div id="log_in">
+                <h2>Log in </h2>
+                <form action='/log_in' method='POST'>
+                    {% csrf_token %}
+                    Email: <input type='text' name='email'>
+                    Password: <input type='password' name='password'>
+                    <input type='submit' value='log in'>
+                </form>
+            </div>
+            <a href='/registration'>Not a member click here to register!</a>
+        </div>
+    </body>
+</html>

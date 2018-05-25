@@ -1,0 +1,13 @@
+#wrapper{
+    width: 970px;
+    margin: 0px auto;
+}
+
+#add{
+    display: block;
+    width: 265px;
+}
+table, tr, th, td{
+    border-width: 1px;
+    border-style: solid;
+}

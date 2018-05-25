@@ -1,0 +1,53 @@
+<DOCTYPE! html>
+    <html>
+        <head>
+            <title>Users</title>
+            <meta charset="utf-8">
+        </head>
+        <body>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td><form action='/users/{{user.id}}' method='GET'>
+                            {% csrf_token %}
+                            <input type="hidden" value= '{{user.id}}', name='id'>
+                            <input type='submit' value='{{user.full_name}}'>
+                            </form>
+                        </td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.created_at}}</td>
+                        <td><form action='/users/{{user.id}}' method='GET'>
+                                {% csrf_token %}
+                                <input type="hidden" value= '{{user.id}}', name='id'>
+                                <input type='submit' value='Show'>
+                            </form>
+                            <form method="GET" action="/users/{{user.id}}/edit" >
+                                {% csrf_token %}
+                                <input type="hidden" value= '{{user.id}}', name='id'>
+                                <input type='submit' value='edit'>
+                            </form>
+                            <form action='/users/{{user.id}}/destroy' method='POST'>
+                                {% csrf_token %}
+                                <input type="hidden" value= '{{user.id}}', name='id'> 
+                                <input type='submit' value='delete'> 
+                            </form>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+
+            <form action='/users/new' method="GET">
+            <input type="submit" value="add new user">
+            </form>
+        </body>
+    </html>
+</DOCTYPE>
